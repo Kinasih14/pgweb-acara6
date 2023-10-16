@@ -35,9 +35,12 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="index.html">Jumlah Penduduk</a></li>
-                            <li><a class="dropdown-item" href="lajupertembuhanpenduduk.html">Laju Pertumbuhan Penduduk</a></li>
-                            <li><a class="dropdown-item" href="jumlahpendudukmenurutkelamin.html">Jumlah Penduduk Menurut Umur</a></li>
+                            <li><a class="dropdown-item" href="lajupertembuhanpenduduk.html">Laju Pertumbuhan
+                                    Penduduk</a></li>
+                            <li><a class="dropdown-item" href="jumlahpendudukmenurutkelamin.html">Jumlah Penduduk
+                                    Menurut Umur</a></li>
                             <li><a class="dropdown-item" href="presentasipenduduk.html">Presentasi Penduduk</a></li>
+                            <li><a class="dropdown-item" href="keluargaberencana.html">Keluarga Berencana</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -102,62 +105,50 @@
         var options = {
             series: [{
                 name: 'Laju Pertumbuhan Penduduk',
-                data: [1.60, 0.97, 0.87, 0.19]
+                data: [1.60, 0.97, 0.87, -0.19]
             }],
             chart: {
-                type: 'bar',
-                height: 350
+                height: 350,
+                type: 'line',
             },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '55%',
-                    endingShape: 'rounded',
-                    dataLabels: {
-                        position: 'top',
-                    },
-                },
-            },
-            dataLabels: {
-                enabled: false
+            forecastDataPoints: {
+                count: 7
             },
             stroke: {
-                show: true,
-                width: 2,
-                colors: ['transparent']
+                width: 5,
+                curve: 'smooth'
             },
             xaxis: {
+                type: 'Kecamatan',
                 categories: ['Argomulyo', 'Tingkir', 'Sidomukti', 'Sidorejo'],
-                title: {
-                    text: 'Kecamatan'
+                tickAmount: 10,
+                labels: {
                 }
             },
-            yaxis: {
-                title: {
-                    text: 'Jiwa'
+            title: {
+                text: 'Laju Pertumbuhan Penduduk Tahun 2021-2022',
+                align: 'left',
+                style: {
+                    fontSize: "16px",
+                    color: '#666'
                 }
             },
             fill: {
-                opacity: 1
-            },
-            tooltip: {
-                y: {
-                    formatter: function (val) {
-                        return val + " Jiwa"
-                    }
-                }
-            },
-            dataLabels: {
-                enabled: true,
-                formatter: function (val) {
-                    return val;
+                type: 'gradient',
+                gradient: {
+                    shade: 'dark',
+                    gradientToColors: ['#FDD835'],
+                    shadeIntensity: 1,
+                    type: 'horizontal',
+                    opacityFrom: 1,
+                    opacityTo: 1,
+                    stops: [0, 100, 100, 100]
                 },
-                offsetY: -20,
-                style: {
-                    fontSize: '12px',
-                    colors: ["#304758"]
-                }
             },
+            yaxis: {
+                min: -0.20,
+                max: 2.0
+            }
         };
 
         var chart = new ApexCharts(document.querySelector("#chart"), options);
